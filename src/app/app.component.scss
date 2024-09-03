@@ -10,3 +10,13 @@
 .main
 {
 }
+.example-full-width
+{
+    width: 400px;
+}
+.taskList
+{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

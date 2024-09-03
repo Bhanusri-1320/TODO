@@ -1,17 +1,24 @@
 <div class="main">
+  <h1>Todo List</h1>
   <div class="input">
-    <form action="">
-      <mat-form-field class="example-full-width" style="width: 400px">
-        <!-- <mat-label>Favorite food</mat-label> -->
-        <input style="width: 500px" matInput placeholder="Enter Task" />
-      </mat-form-field>
-    </form>
+    <mat-form-field class="example-full-width">
+      <!-- <mat-label>Favorite food</mat-label> -->
+      <input matInput placeholder="Enter Task" [(ngModel)]="tasks.task" />
+    </mat-form-field>
     <div class="add">
-      <button style="background-color: #1a73e8; color: white" mat-raised-button>
+      <button
+        style="background-color: #1a73e8; color: white"
+        mat-raised-button
+        (click)="addtask()"
+      >
         +add
       </button>
     </div>
   </div>
-  <app-todolist />
+  <div class="taskList">
+    @for (task of taskList; track $index) {
+    <app-todolist [task]="task" (deleteTaskEvent)="deleteTask($event)" />
+    }
+  </div>
 </div>
 <router-outlet />
