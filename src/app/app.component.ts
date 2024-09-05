@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { TodoService } from './todo.service';
+import { CompetedtaskComponent } from './competedtask/competedtask.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -14,6 +15,7 @@ import { TodoService } from './todo.service';
     MatInputModule,
     MatButtonModule,
     FormsModule,
+    CompetedtaskComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

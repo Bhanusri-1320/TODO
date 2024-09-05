@@ -1,5 +1,5 @@
 <div class="main">
-  <h1>Todo List</h1>
+  <h1 style="text-align: center">Todo List</h1>
   <div class="input">
     <mat-form-field class="example-full-width">
       <!-- <mat-label>Favorite food</mat-label> -->
@@ -20,5 +20,10 @@
     <app-todolist [task]="task" (deleteTaskEvent)="deleteTask($event)" />
     }
   </div>
+</div>
+<br />
+<div>
+  <h1 style="text-align: center">Completed Tasks</h1>
+  <app-competedtask />
 </div>
 <router-outlet />
