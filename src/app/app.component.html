@@ -17,13 +17,19 @@
   </div>
   <div class="taskList">
     @for (task of taskList; track $index) {
-    <app-todolist [task]="task" (deleteTaskEvent)="deleteTask($event)" />
+    <app-todolist
+      [task]="task"
+      (deleteTaskEvent)="deleteTask($event)"
+      (completedTaskEvent)="completed($event)"
+    />
     }
   </div>
 </div>
 <br />
-<div>
+<div class="completed">
   <h1 style="text-align: center">Completed Tasks</h1>
-  <app-competedtask />
+  @for (tasks of completedTask; track $index) {
+  <app-competedtask [task]="tasks" (deleteTaskEvent)="deleteTask($event)" />
+  }
 </div>
 <router-outlet />

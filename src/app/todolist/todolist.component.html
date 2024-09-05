@@ -2,13 +2,13 @@
 <mat-card appearance="outlined">
   <mat-card-content>
     <div class="main">
-      {{ task.task }}
+      <p [style.text-decoration]="iscompleted">{{ task.task }}</p>
       <div class="operation">
         <!-- <i
           class="fa-solid fa-square-check"
           style="color: #4caf50; size: 80px"
         ></i> -->
-        <button>✅</button>
+        <button (click)="completed()">✅</button>
         <button (click)="deletetask()">❌</button>
       </div>
     </div>

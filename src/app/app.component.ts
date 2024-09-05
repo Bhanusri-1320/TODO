@@ -21,6 +21,7 @@ import { CompetedtaskComponent } from './competedtask/competedtask.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  completedTask!: any;
   title = 'my-app';
   tasks = {
     task: '',
@@ -38,7 +39,7 @@ export class AppComponent {
     this.todoService
       .gettasks()
       .then((data) => (this.taskList = data))
-      .then(() => console.log(this.taskList[0].task));
+      .then(() => (this.completedTask = this.todoService.getCompletedtask()));
   }
   ngOnInit() {
     console.log('getting');
@@ -56,5 +57,12 @@ export class AppComponent {
   }
   deleteTask(task: any) {
     this.todoService.deletetask(task).then(() => this.loadtasks());
+  }
+  completed(task: any) {
+    console.log(task);
+    this.todoService.addtocompleted(task);
+  }
+  getCompletedTask() {
+    this.completedTask = this.todoService.getCompletedtask();
   }
 }

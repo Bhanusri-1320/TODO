@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { TodoService } from '../todo.service';
 @Component({
@@ -9,12 +9,18 @@ import { TodoService } from '../todo.service';
   styleUrl: './todolist.component.scss',
 })
 export class TodolistComponent {
+  iscompleted: any;
   @Input() task: any;
   @Output() deleteTaskEvent = new EventEmitter<any>();
+  @Output() completedTaskEvent = new EventEmitter<any>();
   constructor(private todoService: TodoService) {}
   deletetask() {
     console.log(this.task);
-    console.log('Child ❌', this.task);
     this.deleteTaskEvent.emit(this.task);
+  }
+  completed() {
+    this.iscompleted = 'line-through';
+    console.log(this.task);
+    this.completedTaskEvent.emit(this.task);
   }
 }

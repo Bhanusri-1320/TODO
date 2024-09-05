@@ -4,6 +4,7 @@ const API = 'https://669a42939ba098ed61fef789.mockapi.io/Todo';
   providedIn: 'root',
 })
 export class TodoService {
+  completedTask: any = [];
   constructor() {}
   addtask(task: any) {
     console.log(task);
@@ -23,5 +24,11 @@ export class TodoService {
     return fetch(`${API}/${task.id}`, { method: 'Delete' }).then((res) =>
       res.json()
     );
+  }
+  addtocompleted(task: any) {
+    this.completedTask.push(task);
+  }
+  getCompletedtask() {
+    return this.completedTask;
   }
 }
