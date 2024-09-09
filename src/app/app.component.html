@@ -29,7 +29,10 @@
 <div class="completed">
   <h1 style="text-align: center">Completed Tasks</h1>
   @for (tasks of completedTask; track $index) {
-  <app-competedtask [task]="tasks" (deleteTaskEvent)="deleteTask($event)" />
+  <app-competedtask
+    [task]="tasks"
+    (deleteTaskEvent)="deleteCompletedTask($event)"
+  />
   }
 </div>
 <router-outlet />

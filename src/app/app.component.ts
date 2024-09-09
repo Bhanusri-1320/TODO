@@ -36,10 +36,11 @@ export class AppComponent {
       .then(() => console.log(this.taskList));
   }
   loadtasks() {
+    this.todoService.gettasks().then((data) => (this.taskList = data));
     this.todoService
-      .gettasks()
-      .then((data) => (this.taskList = data))
-      .then(() => (this.completedTask = this.todoService.getCompletedtask()));
+      .getCompletedtask()
+      .then((data) => (this.completedTask = data))
+      .then(() => console.log(this.completedTask));
   }
   ngOnInit() {
     console.log('getting');
@@ -58,11 +59,17 @@ export class AppComponent {
   deleteTask(task: any) {
     this.todoService.deletetask(task).then(() => this.loadtasks());
   }
+  deleteCompletedTask(task: any) {
+    this.todoService.deleteCompletedTask(task).then(() => this.loadtasks());
+  }
   completed(task: any) {
     console.log(task);
     this.todoService.addtocompleted(task);
   }
   getCompletedTask() {
-    this.completedTask = this.todoService.getCompletedtask();
+    this.todoService
+      .getCompletedtask()
+      .then((data) => (this.completedTask = data))
+      .then(() => console.log(this.completedTask));
   }
 }
