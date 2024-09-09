@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-const API = 'https://669a42939ba098ed61fef789.mockapi.io';
+// const API = 'https://669a42939ba098ed61fef789.mockapi.io';
+// const API = 'http://localhost:4000';
+const API = 'https://todo-node-egt1.onrender.com';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,14 +22,14 @@ export class TodoService {
     return fetch(`${API}/Todo`).then((res) => res.json());
   }
   deletetask(task: any) {
-    return fetch(`${API}/Todo/${task.id}`, { method: 'Delete' }).then((res) =>
-      res.json()
+    return fetch(`${API}/Todo/${task.todoId}`, { method: 'Delete' }).then(
+      (res) => res.json()
     );
   }
   deleteCompletedTask(task: any) {
-    return fetch(`${API}/CompletedTask/${task.id}`, { method: 'Delete' }).then(
-      (res) => res.json()
-    );
+    return fetch(`${API}/CompletedTask/${task.todoId}`, {
+      method: 'Delete',
+    }).then((res) => res.json());
   }
   addtocompleted(task: any) {
     this.completedTask.push(task);

@@ -25,7 +25,7 @@ export class AppComponent {
   title = 'my-app';
   tasks = {
     task: '',
-    id: '',
+    todoId: '',
   };
   taskList: any = [];
   constructor(private todoService: TodoService) {
@@ -36,15 +36,19 @@ export class AppComponent {
       .then(() => console.log(this.taskList));
   }
   loadtasks() {
-    this.todoService.gettasks().then((data) => (this.taskList = data));
     this.todoService
-      .getCompletedtask()
-      .then((data) => (this.completedTask = data))
-      .then(() => console.log(this.completedTask));
+      .gettasks()
+      .then((data) => (this.taskList = data))
+      .then(() =>
+        this.todoService
+          .getCompletedtask()
+          .then((data) => (this.completedTask = data))
+      );
   }
   ngOnInit() {
     console.log('getting');
     this.loadtasks();
+    this.getCompletedTask();
   }
   addtask() {
     // this.taskList.push(this.task);
@@ -60,16 +64,19 @@ export class AppComponent {
     this.todoService.deletetask(task).then(() => this.loadtasks());
   }
   deleteCompletedTask(task: any) {
-    this.todoService.deleteCompletedTask(task).then(() => this.loadtasks());
+    this.todoService
+      .deleteCompletedTask(task)
+      // .then(() => this.loadtasks())
+      .then(() => this.getCompletedTask());
   }
   completed(task: any) {
     console.log(task);
-    this.todoService.addtocompleted(task);
+    this.todoService.addtocompleted(task).then(() => this.deleteTask(task));
+    // .then(() => this.loadtasks());
   }
   getCompletedTask() {
     this.todoService
       .getCompletedtask()
-      .then((data) => (this.completedTask = data))
-      .then(() => console.log(this.completedTask));
+      .then((data) => (this.completedTask = data));
   }
 }
